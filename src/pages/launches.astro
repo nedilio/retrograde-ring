@@ -1,0 +1,13 @@
+﻿---
+import Layout from "../layouts/Layout.astro";
+import { getAllLaunches } from "../services/spacex";
+const launches = await getAllLaunches();
+---
+
+<Layout title="Launches">
+  <h1>Launches</h1>
+  <div class="flex flex-wrap"></div>
+  <pre>
+    {JSON.stringify(launches, null, 2)}
+  </pre>
+</Layout>

@@ -1,0 +1,10 @@
+﻿---
+import { getAllLaunches } from "../services/spacex";
+import Card from "./Card.astro";
+
+const launches = await getAllLaunches();
+---
+
+<div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
+  {launches.map((launch) => <Card launch={launch} />)}
+</div>

@@ -1,0 +1,18 @@
+﻿---
+import Layout from "../../layouts/Layout.astro";
+import { getAllLaunches, getLaunchById } from "../../services/spacex";
+import Card from "../../components/Card.astro";
+export const getStaticPaths = async () => {
+  const launches = await getAllLaunches();
+  return (await launches).map(({ id }) => ({ params: { id } }));
+};
+let launch;
+const { id } = Astro.params;
+if (id !== undefined) {
+  launch = await getLaunchById(id);
+}
+---
+
+<Layout title=`Launch ${id}`>
+  <Card {launch} />
+</Layout>
